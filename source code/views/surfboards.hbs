@@ -1,0 +1,78 @@
+<!-- //Citation for the following code
+//Date: 7/28/2022
+//Copied from /OR/ Adapted from /OR/ Based on:
+//Source URL: https://www.youtube.com/watch?v=gLWIYk0Sd38&t=843s&ab_channel=RichardCodes
+and https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+-->
+
+<div class="pageTitle"> Surfboards </div>
+
+<div class="navbar">
+    <a href="http://flip1.engr.oregonstate.edu:1331/"> Home </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/customers"> Customers </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/employees"> Employees </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/orders"> Orders / Order Items </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/surfboards"> Surfboards </a>
+</div>
+
+
+<form id="add-surfboard-form" method="POST" action="/add-surfboards">
+    <div class="textboxGrp">
+        <div class="row1">
+            <label for="surfboard-name-input"> Surfboard Name: </label>
+            <input type="text" name="surfboard-name-input" id="sinput-name">
+
+            <label for="surfboard-color-input"> Color: </label>
+            <input type="text" name="surfboard-color-input" id="sinput-color">
+
+            <label for="surfboard-price-input"> Surfboard Price: </label>
+            <input type="number" name="surfboard-price-input" id="sinput-color" step="0.01">
+        </div>
+        <div class = "row2">
+            <label for="surfboard-cond-input">Surfboard Condition:</label>
+            <select id="sinput-cond" name="surfboard-cond-input">
+                <option value="New"> New</option>
+                <option value="Lightly Used"> Lightly Used</option>
+                <option value="Used"> Used</option>
+                <option value="Old"> Old </option>
+            </select>
+
+            <label for="surfboard-type-input">Surfboard Type:</label>
+            <select id="sinput-type" name="surfboard-type-input">
+                <option value="Regular"> Regular</option>
+                <option value="Shortboard"> Shortboard</option>
+                <option value="Longboard"> Longboard</option>
+                <option value="Funboard"> Funboard</option>
+                <option value="Stand-up Board"> Stand-up Board </option>
+            </select>
+        </div>
+    </div>
+    <div class="buttonGroup">
+        <input type="submit" value="Add Surfboard">
+    </div>
+</form>
+
+
+<table id="surfboard-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr class="employeeEntry">
+            <td>{{this.surfboard_id}}</td>
+            <td>{{this.surfboard_name}}</td>
+            <td>{{this.color}}</td>
+            <td>{{this.surfboard_price}}</td>
+            <td>{{this.surfboard_condition}}</td>
+            <td>{{this.surfboard_type }}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

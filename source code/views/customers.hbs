@@ -1,0 +1,140 @@
+<!-- //Citation for the following code
+//Date: 7/28/2022
+//Copied from /OR/ Adapted from /OR/ Based on:
+//Source URL: https://www.youtube.com/watch?v=gLWIYk0Sd38&t=843s&ab_channel=RichardCodes
+and https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+-->
+
+<div class="pageTitle"> Customers </div>
+
+<div class="navbar">
+    <a href="http://flip1.engr.oregonstate.edu:1331/"> Home </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/customers"> Customers </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/employees"> Employees </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/orders"> Orders / Order Items </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/surfboards"> Surfboards </a>
+</div>
+
+
+<form id="add-customer-form" method="POST" action="/add-customers">
+    <div class="textboxGrp">
+        <div class="row">
+            <label for="customer-fname-input"> First Name: </label>
+            <input type="text" name="customer-fname-input" id="cinput-fname">
+
+            <label for="customer-lname-input"> Last Name: </label>
+            <input type="text" name="customer-lname-input" id="cinput-lname">
+
+            <label for="customer-email-input"> Email: </label>
+            <input type="email" name="customer-email-input" id="cinput-email">
+        </div>
+        <div class="row2">
+            <label for="customer-phone-input"> Phone Number: </label>
+            <input type="tel" name="customer-phone-input" id="cinput-phone">
+
+            <label for="city-input"> City: </label>
+            <input type="text" name="city-input" id="cinput-city">
+
+            <label for="state-input">State:</label>
+            <select id="cinput-state" name="state-input">
+                <option value="Alabama"> Alabama</option>
+                <option value="Alaska"> Alaska</option>
+                <option value="Arizona"> Arizona</option>
+                <option value="Arkansas"> Arkansas </option>
+                <option value="California"> California</option>
+                <option value="Colorado"> Colorado</option>
+                <option value="Connecticut"> Connecticut</option>
+                <option value="Delaware"> Delaware </option>
+                <option value="Florida"> Florida </option>
+                <option value="Georgia"> Georgia</option>
+                <option value="Hawaii"> Hawaii</option>
+                <option value="Idaho"> Idaho </option>
+                <option value="Illinois"> Illinois </option>
+                <option value="Indiana"> Indiana</option>
+                <option value="Iowa"> Iowa</option>
+                <option value="Kansas"> Kansas</option>
+                <option value="Kentucky"> Kentucky </option>
+                <option value="Louisiana"> Louisiana</option>
+                <option value="Maine"> Maine</option>
+                <option value="Maryland"> Maryland</option>
+                <option value="Massachusetts"> Massachusetts </option>
+                <option value="Michigan"> Michigan </option>
+                <option value="Minnesota"> Minnesota</option>
+                <option value="Mississippi"> Mississippi</option>
+                <option value="Missouri"> Missouri </option>
+                <option value="Montana"> Montana </option>
+                <option value="Nebraska"> Nebraska</option>
+                <option value="Nevada"> Nevada</option>
+                <option value="New Hampshire"> New Hampshire</option>
+                <option value="New Jersey"> New Jersey </option>
+                <option value="New Mexico"> New Mexico</option>
+                <option value="New York"> New York </option>
+                <option value="North Carolina"> North Carolina</option>
+                <option value="North Dakota"> North Dakota </option>
+                <option value="Ohio"> Ohio </option>
+                <option value="Oklahoma"> Oklahoma</option>
+                <option value="Oregon"> Oregon</option>
+                <option value="Pennsylvania"> Pennsylvania </option>
+                <option value="Rhode Island"> Rhode Island</option>
+                <option value="South Carolina"> South Carolina</option>
+                <option value="South Dakota"> South Dakota</option>
+                <option value="Tennessee"> Tennessee</option>
+                <option value="Texas"> Texas</option>
+                <option value="Utah"> Utah </option>
+                <option value="Vermont"> Vermont</option>
+                <option value="Virginia"> Virginia </option>
+                <option value="Washington"> Washington</option>
+                <option value="West Virginia"> West Virginia</option>
+                <option value="Wisconsin"> Wisconsin</option>
+                <option value="Wyoming"> Wyoming </option>
+            </select>
+        </div>
+        <div class="row2">
+            <label for="street-input"> Street: </label>
+            <input type="text" name="street-input" id="cinput-street">
+
+            <label for="zip-input"> Zipcode: </label>
+            <input type="postal" name="zip-input" id="cinput-zip">
+        </div>
+    </div>
+    <div class="buttonGroup">
+        <input type="submit" value="Add Customer" id="addCutomerButton">
+    </div>
+</form>
+
+
+<h2 class="h2">Search:</h2>
+<form id="search-customers-html" method='GET' action='/customers'>
+    <label for="input-customerLastName">Search by Customer Last Name: </label>
+    <input type="text" name="customerLastName" id="input-customerLastName-html-search">
+    <input type="submit" id="searchButton">
+    <a href='/customers'><button>Reset</button></a>
+</form>
+
+
+<table id="customer-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr class="customerEntry">
+            <td>{{this.customer_id}}</td>
+            <td>{{this.customer_first_name}}</td>
+            <td>{{this.customer_last_name}}</td>
+            <td>{{this.customer_email}}</td>
+            <td>{{ this.customer_phone }}</td>
+            <td>{{ this.state }}</td>
+            <td>{{ this.city }}</td>
+            <td>{{ this.street }}</td>
+            <td>{{ this.zip_code }}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

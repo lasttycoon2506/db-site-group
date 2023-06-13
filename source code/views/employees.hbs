@@ -1,0 +1,78 @@
+<div class="pageTitle"> Employees </div>
+
+<div class="navbar">
+    <a href="http://flip1.engr.oregonstate.edu:1331/"> Home </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/customers"> Customers </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/employees"> Employees </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/orders"> Orders / Order Items </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/surfboards"> Surfboards </a>
+</div>
+
+<!-- //Citation for the following code
+//Date: 7/27/2022
+//Copied from /OR/ Adapted from /OR/ Based on:
+//Source URL: https://www.youtube.com/watch?v=gLWIYk0Sd38&t=843s&ab_channel=RichardCodes
+and https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+
+<form id="add-employee-form" method="POST" action="/add-employees">
+    <div class="textboxGrp">
+        <div class="row">
+            <label for="employee-fname-input"> Employee First Name: </label>
+            <input type="text" name="employee-fname-input" id="einput-fname">
+
+            <label for="employee-lname-input"> Employee Last Name: </label>
+            <input type="text" name="employee-lname-input" id="einput-lname">
+        </div>
+        <div class="row2">
+            <label for="employee-email-input"> Employee Email: </label>
+            <input type="email" name="employee-email-input" id="einput-email">
+
+            <label for="employee-phone-input"> Employee Phone Number: </label>
+            <input type="tel" name="employee-phone-input" id="einput-phone">
+
+            <label for="employee-title-input">Employee Title:</label>
+            <select id="einput-title" name="employee-title-input">
+                <option value="Management"> Management</option>
+                <option value="Sales"> Sales</option>
+                <option value="Technician"> Technician</option>
+                <option value="Customer Service"> Customer Service</option>
+                <option value="HR"> HR </option>
+            </select>
+        </div>
+
+    </div>
+    <div class="buttonGroup">
+        <input type="submit" value="Add Employees" id="addEmployeeButton">
+    </div>
+</form>
+
+
+<table id="employee-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr class="employeeEntry">
+            <td>{{this.employee_id}}</td>
+            <td>{{this.employee_first_name}}</td>
+            <td>{{this.employee_last_name}}</td>
+            <td>{{this.employee_email}}</td>
+            <td>{{this.employee_phone}}</td>
+            <td>{{ this.employee_title }}</td>
+        </tr>
+
+        {{/each}}
+
+    </tbody>
+</table>

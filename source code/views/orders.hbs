@@ -1,0 +1,232 @@
+<!-- //Citation for the following code
+//Date: 7/28/2022
+//Copied from /OR/ Adapted from /OR/ Based on:
+//Source URL: https://www.youtube.com/watch?v=gLWIYk0Sd38&t=843s&ab_channel=RichardCodes
+and https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<div class="navbar">
+    <a href="http://flip1.engr.oregonstate.edu:1331/"> Home </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/customers"> Customers </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/employees"> Employees </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/orders"> Orders / Order Items </a>
+    <a href="http://flip1.engr.oregonstate.edu:1331/surfboards"> Surfboards </a>
+</div>
+
+{{!-- Create a table --}}
+<table id="orders-table">
+    <caption> Orders </caption>
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr class="orderEntry">
+            <td>{{this.order_id}}</td>
+            <td>{{this.order_date}}</td>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.employee_id}}</td>
+            <td>{{this.order_status}}</td>
+            <td><button onclick="delete_Order({{this.order_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+
+<table id="order-items-table">
+    <caption> Orders Items </caption>
+    <thead>
+        <tr>
+            {{#each o_items.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each o_items}}
+        <tr class="orderEntry">
+            <td>{{this.order_id}}</td>
+            <td>{{this.order_items_id}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.order_date}}</td>
+            <td>{{this.order_status}}</td>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.employee_id}}</td>
+            <td>{{this.surfboard_id}}</td>
+            <td><button onclick="showUpdateOrderItemsModal()"> Edit </button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+<div class=" buttonGroup">
+    <button onclick="showModal()"> Add Order </button>
+    <button onclick="showAddOrderItemsModal()"> Add Order Items </button>
+</div>
+
+<!-- //Citation for the following code
+//Date: 7/28/2022
+//Copied from /OR/ Adapted from /OR/ Based on:
+//Source URL: https://www.youtube.com/watch?v=gLWIYk0Sd38&t=843s&ab_channel=RichardCodes
+and https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+
+<!-- Add Modal -->
+<div class="bg-modal">
+    <div class="modal-content" name="addOrderModal">
+
+        <form id="add-order-form">
+
+            <label for="input_order_date" class="modal-label"> Order Date: </label>
+            <input type="text" placeholder="YYYY-MM-DD" name="input_order_date" class="formInput" id="order-date-input">
+            <label for="select_customer_id" class="modal-label"> Customer ID: </label>
+
+            <select name="select_customer_id" class="formInput" id="customer-id-input">
+                {{#each customer_id_rows}}
+                <option value="{{this.customer_id}}">{{this.customer_id}}. ({{this.customer_first_name}}
+                    {{this.customer_last_name}})</option>
+                {{/each}}
+            </select>
+
+            <label for="select_employee_id" class="modal-label"> Employee ID: </label>
+            <select name="select_employee_id" class="formInput" id="employee-id-input">
+                {{#each emp_id_rows}}
+                <option value="{{this.employee_id}}">{{this.employee_id}}. ({{this.employee_first_name}}
+                    {{this.employee_last_name}})</option>
+                {{/each}}
+            </select>
+
+            <label for="select_order_status" class="modal-label"> Order Status: </label>
+            <select name="select_order_status" class="formInput" id="order-status-input">
+                <option value="1"> Fulfilled </option>
+                <option value="0"> Unfulfilled </option>
+            </select>
+
+
+            <div class="btnGrp">
+                <input type="submit" value="Add Order to Database" id="addOrdertoDatabaseButton">
+                <script src="./js/add_orders.js"> </script>
+            </div>
+
+        </form>
+
+        <button class="formInputButton" id="closeOrderItemsButton" onclick="closeModal()">
+            Cancel
+        </button>
+    </div>
+</div>
+</div>
+
+<!-- //Citation for the following code
+//Date: 7/28/2022
+//Copied from /OR/ Adapted from /OR/ Based on:
+//Source URL: https://www.youtube.com/watch?v=gLWIYk0Sd38&t=843s&ab_channel=RichardCodes
+and https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+-->
+
+
+
+<!-- Add Order Items Modal -->
+<div class="bg-modal" id="add-oitems-modal">
+    <div class="modal-content" name="addOrderItemsModal">
+
+        <form id="add-order-items-form">
+
+            <label for="quantity" class="modal-label"> Quantity </label>
+            <input type="number" name="quantity" class="formInput" min="1" placeholder="1" id="quantity-input">
+
+            <label for="select_surfboard_id" class="modal-label"> Surfboard ID: </label>
+            <select name="select_surfboard_id" class="formInput" id="surfboard-id-input">
+                <option value="None">None</option>
+                {{#each surf_rows}}
+                <option value="{{this.surfboard_id}}">{{this.surfboard_id}}. ({{this.surfboard_name}})</option>
+                {{/each}}
+            </select>
+
+            <label for="select_order_id" class="modal-label"> Order ID: </label>
+            <select name="select_order_id" class="formInput" id="order-id-input">
+                {{#each data}}
+                <option value="{{this.order_id}}">{{this.order_id}}</option>
+                {{/each}}
+            </select>
+
+            <div class="btnGrp">
+                <input type="submit" value="Add Order Items" id="addOrderItemsButton">
+                <script src="./js/add_order_item.js"></script>
+            </div>
+        </form>
+
+        <button class="formInputButton" id="closeOrderItemsButton" onclick="closeAddOrderItemsModal()">
+            Cancel
+        </button>
+    </div>
+</div>
+</div>
+
+
+<!-- //Citation for the following code
+//Date: 7/28/2022
+//Copied from /OR/ Adapted from /OR/ Based on:
+//Source URL: https://www.youtube.com/watch?v=gLWIYk0Sd38&t=843s&ab_channel=RichardCodes
+and https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data -->
+
+
+<!-- Update Order Items Modal-->
+<div class="bg-modal" id="oitems-modal">
+    <div class="modal-content" name="updateOrderItemsModal">
+        <form id="update-order-items-form">
+
+            <label for="order-items-id" class="modal-label"> Select Order Items ID </label>
+            <select name="order-items-id" class="formInput" id="oitems-id-input">
+                {{#each o_items}}
+                <option value="{{this.order_items_id}}">{{this.order_items_id}}</option>
+                {{/each}}
+            </select>
+
+
+            <label for="quantity" class="modal-label"> Quantity </label>
+            <input type="number" name="quantity" class="formInput" min="1" id="u-quantity-input" placeholder=" 1">
+
+            <label for="select_surfboard_id" class="modal-label"> Surfboard ID: </label>
+            <select name="select_surfboard_id" class="formInput" id="u-surfboard-id-input">
+                <option value="None"> None </option>
+                {{#each surf_rows}}
+                <option value="{{this.surfboard_id}}">{{this.surfboard_id}}. ({{this.surfboard_name}})</option>
+                {{/each}}
+            </select>
+
+            <label for="select_order_id" class="modal-label"> Order ID: </label>
+            <select name="select_order_id" class="formInput" id="u-order-id-input">
+                {{#each data}}
+                <option value="{{this.order_id}}">{{this.order_id}}</option>
+                {{/each}}
+            </select>
+
+            <div class="btnGrp">
+                <input type="submit" id="updateOrderItemsButton" value="Update Order Items">
+                <script type="text/javascript" src="./js/update_order_item.js"></script>
+            </div>
+        </form>
+
+
+        <button class="formInputButton" id="closeOrderItemsButton" onclick="closeUpdateOrderItemsModal()">
+            Cancel
+        </button>
+    </div>
+
+</div>

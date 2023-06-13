@@ -1,0 +1,262 @@
+body {
+    background-color: peachpuff;
+}
+
+table {
+    border: 2px solid #555;
+    border-collapse: collapse;
+    font: 16px "Lucida Grande", "Helvetica", "Arial", sans-serif;
+}
+
+#orders-table {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+td {
+    border-collapse: separate;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #bbb;
+}
+
+th {
+    border: 1px solid #bbb;
+    padding: 2px 8px 0;
+    text-align: center;
+}
+
+thead>tr>th {
+    background-color: rgb(2, 2, 6);
+    font-size: 18px;
+    border-bottom: 2px solid rgb(19, 16, 16);
+    text-align: center;
+}
+
+.navbar {
+    z-index: 1;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(74, 124, 218);
+}
+
+.navbar a {
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: auto;
+}
+
+.navbar a:hover {
+    background: rgb(24, 165, 230);
+    color: #e1e59d;
+}
+
+
+#addOrderItemsButton {
+    display: inline-block;
+}
+
+#addOrderItemsButton:hover,
+#updateOrderItemsButton:hover,
+#addOrdertoDatabaseButton:hover,
+#searchButton:hover,
+#addCustomerButton:hover,
+#addEmployeeButton:hover {
+    background-color: gray;
+    color: #FFD301;
+}
+
+.main {
+    margin-top: 30px;
+    height: 1500px;
+
+}
+
+table {
+    position: relative;
+    top: 16%;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 2.5rem;
+    border-radius: 10px;
+    color: #FFD301;
+    background-color: rgb(131, 6, 131);
+    text-align: center;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+tr th {
+    padding: 0.45rem;
+    color: #FFD301;
+}
+
+.orderEntry:nth-child(odd) {
+    background-color: rgb(141, 51, 141);
+}
+
+.headerRow {
+    border-radius: 10px;
+    background: rgb(64, 8, 82);
+}
+
+.orderItems {
+    border: none;
+}
+
+.modelQuantity {
+    text-decoration: underline;
+}
+
+.buttonGroup {
+    position: relative;
+    margin-top: .75%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.pageTitle {
+    position: relative;
+    font-size: 40px;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: rgb(255, 153, 0);
+}
+
+.mainpageTitle {
+    position: relative;
+    font-size: 40px;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-shadow: 1px 1px 4px black;
+    color: rgb(255, 153, 0);
+}
+
+.bg-modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+}
+
+.exampleTable {
+    position: relative;
+    margin-top: 300px;
+    margin-bottom: 200px;
+}
+
+.modal-content {
+    border-radius: 10px;
+    width: 600px;
+    top: 15%;
+    background-color: white;
+    text-align: center;
+    padding: 50px;
+    position: absolute;
+}
+
+.formInput {
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    display: block;
+}
+
+.modal-content {
+    font-size: 16px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    font-size: 42px;
+    transform: rotate(45deg);
+}
+
+.btnGroup {
+    height: 10%;
+    width: 20%;
+}
+
+button,
+input,
+select {
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: gray;
+    color: #FFD301;
+}
+
+.textboxGrp {
+    display: inline-block;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 2%;
+}
+
+.textboxGrp label {
+    padding-right: 10px;
+    padding-left: 30px;
+    font-size: 16px;
+}
+
+.row {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.row2 {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.homePageBackground {
+    background-image: url("https://free4kwallpapers.com/uploads/originals/2018/07/06/surfboard-on-the-beach-wallpaper.jpg");
+    height: 4000px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: color;
+}
+
+caption {
+    font-size: 50px;
+    color: orange;
+}
+
+h2 {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    text-align: left;
+}

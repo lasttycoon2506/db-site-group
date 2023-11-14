@@ -4,3 +4,5 @@ A surfboard selling site tracking associated customers, employees, and orders us
 ## Introduction
 Site allows for an employee to generate order(s) to be viewed, updated, and deleted. Each order is associated with a customer, exmployee, and item(s) - different surfboard models.
 
+## Installation
+Code repo is provided as working reference only
